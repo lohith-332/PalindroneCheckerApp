@@ -5,42 +5,29 @@
 public class PalindromeCheckerApp {
 
     public static void main(String[] args){
-        String input = "madam";
 
-        // Flag to track palindrome status
+        String input = "radar";
+
+        // Step 1: Convert String to char array
+        char[] charArray = input.toCharArray();
+
         boolean isPalindrome = true;
+        int left = 0;                    // Start pointer
+        int right = charArray.length - 1; // End pointer
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
-
-            // Compare characters from start and end
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+        // Step 2: Two-Pointer comparison
+        while (left < right) {
+            if (charArray[left] != charArray[right]) {
                 isPalindrome = false;
-                break;
+                break; // Exit early if a mismatch is found
             }
+            left++;  // Move toward the middle
+            right--; // Move toward the middle
         }
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println(input + " is a Palindrome.");
-        } else {
-            System.out.println(input + " is NOT a Palindrome.");
-            String original = "level";
-            String reversed = "";
-
-            // Loop: Iterating backwards
-            for (int i = original.length() - 1; i >= 0; i--) {
-                reversed += original.charAt(i); // String Concatenation
-            }
-
-            // Comparison: Using .equals() for content
-            if (original.equalsIgnoreCase(reversed)) {
-                System.out.println(original + " is a palindrome.");
-            } else {
-                System.out.println(original + " is not a palindrome.");
-            }
-        }
+        System.out.println("Is palindrome: " + isPalindrome);
     }
-        }
+}
+
 
 
