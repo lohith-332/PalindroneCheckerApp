@@ -25,7 +25,22 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is a Palindrome.");
         } else {
             System.out.println(input + " is NOT a Palindrome.");
+            String original = "level";
+            String reversed = "";
+
+            // Loop: Iterating backwards
+            for (int i = original.length() - 1; i >= 0; i--) {
+                reversed += original.charAt(i); // String Concatenation
+            }
+
+            // Comparison: Using .equals() for content
+            if (original.equalsIgnoreCase(reversed)) {
+                System.out.println(original + " is a palindrome.");
+            } else {
+                System.out.println(original + " is not a palindrome.");
+            }
         }
     }
-}
+        }
+
 
