@@ -1,33 +1,47 @@
 // version 1.0
 // author Abc
-// useCase 1: Welcome page
+
+import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        String input = "radar";
+        Scanner scanner = new Scanner(System.in);
 
-        // Step 1: Convert String to char array
-        char[] charArray = input.toCharArray();
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        boolean isPalindrome = true;
-        int left = 0;                    // Start pointer
-        int right = charArray.length - 1; // End pointer
+        // Normalize the string (optional but recommended)
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        // Step 2: Two-Pointer comparison
-        while (left < right) {
-            if (charArray[left] != charArray[right]) {
-                isPalindrome = false;
-                break; // Exit early if a mismatch is found
-            }
-            left++;  // Move toward the middle
-            right--; // Move toward the middle
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters into stack
+        for (char ch : normalized.toCharArray()) {
+            stack.push(ch);
         }
 
-        System.out.println("Is palindrome: " + isPalindrome);
+        boolean isPalindrome = true;
+
+        // Pop characters and compare
+        for (char ch : normalized.toCharArray()) {
+            if (ch != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Output result
+        if (isPalindrome) {
+            System.out.println("The given string is a palindrome.");
+        } else {
+            System.out.println("The given string is NOT a palindrome.");
+        }
+
+        scanner.close();
     }
 }
-
 
 
